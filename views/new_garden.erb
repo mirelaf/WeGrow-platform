@@ -1,0 +1,71 @@
+</br></br></br>
+
+<div class="container-fluid">
+<h1>Add new garden</h1>
+
+<!-- Responsive form to add new garden -->
+<form action='/garden' method='POST'>
+  <input type='hidden' name'id'\> </input>
+  <div class="form-group">
+    <select class="custom-select" name="owner_username" required>
+      <label>Owner</label>
+      <option value="">Select the owner</option>
+      <% @members.each do |member| %>
+      <option value="<%= member[:member_username] %>"> <%= member[:member_username] %> </option>
+      <% end %></br>
+    </select>
+  </div>
+  <h5> Only the fields marked with * are required for now. If you're in a hurry you can update the rest later. <h5></br>
+  <div class="form-group">
+    <label>Add a short name for your garden*</label>
+    <input type="text" class="form-control" name='name' placeholder="Short garden name" required>
+    <small class="form-text text-muted">This is the "catch phrase" that will appear also on the map, for all members to see.</small>
+  </div>
+  <div class="form-group">
+    <label>And also a description</label>
+    <input type="text" class="form-control" name='description' placeholder="Description">
+    <small class="form-text text-muted">Here you can include more info about the garden, its story, any recent developments or anything you'd like to share.</small>
+  </div>
+  <div class="form-group">
+    <label>Street name*</label>
+    <input type="text" class="form-control" name="street_name" placeholder="Street name" required>
+  </div>
+  <div class="form-group">
+    <label>Street number*</label>
+    <input type="text" class="form-control" name='street_number' placeholder="Street number" required>
+  </div>
+  <div class="form-group">
+    <label>Zip code*</label>
+    <input type="text" class="form-control" name='zip_code' placeholder="Zip code" required>
+  </div>
+  <div class="form-group">
+    <label>City*</label>
+    <input type="text" class="form-control" name='city' placeholder="City" required>
+  </div>
+  <div class="form-group">
+    <label>How big is the garden? (rough estimate in m2)</label>
+    <input type="text" class="form-control" name='size' placeholder="Garden size (m2)">
+  </div>
+  <div class="form-group">
+    <label>What do you grow or plan to grow in the garden? (name fruit, veggies, spices, flowers etc.)</label>
+    <input type="text" class="form-control" name='crops' placeholder="Crops in the garden">
+  </div>
+  <div class="form-group">
+    <label>Which tools and materials do you already have available for guests...</label>
+    <input type="text" class="form-control" name='facilities' placeholder="Tools, materials, facilities provided">
+  </div>
+  <div class="form-group">
+    <label>... and what should they bring themselves?</label>
+    <input type="text" class="form-control" name='bring_your_own' placeholder="What garden helpers should bring along">
+  </div>
+  <div class="form-group">
+    <label>Minimum level of gardening experience preferred for helpers (1 to 5, where 1 is none/minimum and 5 is pro)</label>
+    <input type="number" class="form-control" name='experience' min="1" max="5" placeholder="Gardening experience should be at level ...">
+  </div>
+
+  <!-- Cancelling takes you back to index page -->
+  <a href="/" name="cancel" class="btn btn-default">Cancel</a>
+  <button type="submit" value="Save" class="btn btn-primary">Save</button>
+</form>
+
+</div>

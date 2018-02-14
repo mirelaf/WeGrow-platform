@@ -1,0 +1,64 @@
+</br></br></br>
+
+<div class="container-fluid">
+<h1>Add new member</h1>
+
+<!-- Responsive form to edit member -->
+<form action='/member' method='POST'>
+  <input type='hidden' name'id'\> </input>
+  <h5> Only the fields marked with * are required for now. If you're in a hurry you can update the rest later. <h5></br>
+  <div class="form-group">
+    <label>Username*</label>
+    <input type="text" class="form-control" name="username" placeholder="Username" required>
+  </div>
+  <div class="form-group">
+    <label>Password*</label>
+    <input type="password" class="form-control" name="password" placeholder="Password" required>
+  </div>
+  <div class="form-group">
+    <label>First name</label>
+    <input type="text" class="form-control" name="first_name" placeholder="First name">
+  </div>
+  <div class="form-group">
+    <label>Last name</label>
+    <input type="text" class="form-control" name="last_name" placeholder="Last name">
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" class="form-control" name='email' aria-describedby="emailHelp" placeholder="email@email.com">
+  </div>
+  <div class="form-group">
+    <label>Phone number</label>
+    <input type="text" class="form-control" name='phone' placeholder="Phone number">
+  </div>
+  <div class="form-group">
+    <label>Street name</label>
+    <input type="text" class="form-control" name='street_name' placeholder="Street name">
+  </div>
+  <div class="form-group">
+    <label>Street number</label>
+    <input type="text" class="form-control" name='street_number' placeholder="Street number">
+  </div>
+  <div class="form-group">
+    <label>Zip code</label>
+    <input type="text" class="form-control" name='zip_code' placeholder="Zip code">
+  </div>
+  <div class="form-group">
+    <label>City</label>
+    <input type="text" class="form-control" name='city' placeholder="City">
+  </div>
+  <div class="form-group">
+    <label>Short description, hobbies, interests</label>
+    <input type="text" class="form-control" name='description' placeholder="Would be great to know about more about you">
+  </div>
+  <div class="form-group">
+    <label>On a scale from 1 to 5, where 1 is none/minimum and 5 is pro, how would you rate your gardening experience?</label>
+    <input type="number" class="form-control" name='experience' min="1" max="5" placeholder="Insert number between 1 and 5">
+  </div>
+
+  <!-- Cancelling takes you back to index page -->
+  <a href="/" name="cancel" class="btn btn-default">Cancel</a>
+  <button type="submit" value='Save'class="btn btn-primary">Save</button>
+</form>
+
+</div>

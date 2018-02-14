@@ -1,0 +1,179 @@
+body {
+  min-height: 100%;
+  padding-bottom: 150px;
+  position: relative;
+  margin: 0;
+}
+
+a.name-text:visited, a.name-text:hover, a.name-text:active, a.name-text:link {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+#intro {
+  width: 100%;
+  background-color: #d9d9d9;
+}
+
+#benefits {
+  background-color: #e8d3a9;
+  width: 100%;
+}
+
+#benefits .section-title-black {
+  color: #6e6460;
+  font-weight: bold;
+}
+
+#map {
+  height: 55%;
+  max-width: 100%;
+  min-height: 500px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  bottom: 0;
+  margins: auto;
+  padding: 0;
+  align-self: center;
+}
+
+
+.section-title-color {
+  color: #89b399;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.section-title-white {
+  color: white;
+  font-size: 2vw;
+  font-weight: bold;
+}
+
+.section-title-black {
+  color: black;
+  font-size: 1.8vw;
+  font-weight: bold;
+}
+
+.garden-list-area {
+  margins: 0px 0px 10px 0px;
+  padding: 0;
+  min-height: 500px;
+}
+
+.garden-box {
+  margin: 0% 0% 1% 0%;
+  min-height: 27vw;
+  padding-bottom: 2%;
+}
+
+.garden-thumbnail {
+  margin: 0;
+  border-radius: 5%;
+  display: inline;
+}
+
+.gm-style-iw {
+   width: 15vw !important;
+   top: 0 !important;
+   left: 0 !important;
+}
+
+.garden-marker-box {
+  padding: !important;
+  margin: 0 !important;
+  min-height: 10vw;
+  width: 15vw;
+  text-align: center;
+  display: block !important;
+  background-color: white;
+}
+
+.garden-marker-picture {
+  max-height: 15vw;
+  margin: auto;
+  width: 15vw;
+  height: auto;
+  display: block;
+  padding: 0;
+  top: 0;
+  left: 0;
+}
+
+.garden-marker-text {
+  font-size: 1.4vw;
+  font-weight: bold;
+  position: relative;
+}
+
+.text-names-links {
+  font-size: 1.4vw;
+  line-height: normal;
+  margin: 0;
+  padding: 1% 0% 0% 0%;
+  font-weight: bold;
+}
+
+.text-subtitles {
+  font-size: 1vw;
+  line-height: normal;
+  margin: 0;
+  padding: 1% 0% 0% 0%;
+}
+
+.view-garden-icon {
+  max-height: 5vw;
+}
+
+.benefits-icon {
+  max-height: 5vw;
+}
+
+.vcenter {
+  display: flex;
+  align-items: center;
+}
+
+.member-profile-pic {
+  height: 6vw;
+}
+
+.container-box {
+  background-color: #f4ead7;
+  padding: 10px 5px 5px 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 3%;
+}
+
+.text-intro {
+    color: #6e6460;
+    font-size: 1.5vw;
+}
+
+.text-when-visible {
+  color: green;
+  font-weight: bold;
+}
+
+.text-when-hidden {
+  color: brown;
+  font-weight: bold;
+}
+
+.footer{
+  background-color: grey;
+  color: white;
+  font-size: 1vw;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100px;
+  padding: 15px;
+}

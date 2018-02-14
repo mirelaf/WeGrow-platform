@@ -1,0 +1,63 @@
+</br></br></br>
+
+<div class="container-fluid">
+<h1>Edit member details</h1>
+
+<!-- Responsive form to edit member -->
+<form action='/member/<%= @member[:member_id] %>' method='POST'>
+  <input type='hidden' name'id'\> </input>
+  <h5> Fields marked with * are required. <h5></br>
+  <div class="form-group">
+    <label>Username*</label>
+    <input type="text" class="form-control" name="username" value='<%= @member[:member_username] %>' required>
+  </div>
+  <div class="form-group">
+    <label>Password*</label>
+    <input type="password" class="form-control" name="password" value='<%= @member[:member_password] %>' required>
+  </div>
+  <div class="form-group">
+    <label>First name</label>
+    <input type="text" class="form-control" name="first_name" value='<%= @member[:member_first_name] %>'>
+  </div>
+  <div class="form-group">
+    <label>Last name</label>
+    <input type="text" class="form-control" name="last_name" value='<%= @member[:member_last_name] %>'>
+  </div>
+  <div class="form-group">
+    <label>Email address</label>
+    <input type="email" class="form-control" name='email' aria-describedby="emailHelp" value='<%= @member[:member_email] %>'>
+  </div>
+  <div class="form-group">
+    <label>Phone number</label>
+    <input type="text" class="form-control" name='phone' value='<%= @member[:member_phone] %>'>
+  </div>
+  <div class="form-group">
+    <label>Street name</label>
+    <input type="text" class="form-control" name='street_name' value='<%= @member[:member_street_number] %>'>
+  </div>
+  <div class="form-group">
+    <label>Street number</label>
+    <input type="text" class="form-control" name='street_number' value='<%= @member[:member_street_number] %>'>
+  </div>
+  <div class="form-group">
+    <label>Zip code</label>
+    <input type="text" class="form-control" name='zip_code' value='<%= @member[:member_zip_code] %>'>
+  </div>
+  <div class="form-group">
+    <label>City</label>
+    <input type="text" class="form-control" name='city' value='<%= @member[:member_city] %>'>
+  </div>
+  <div class="form-group">
+    <label>Short description, hobbies, interests</label>
+    <input type="text" class="form-control" name='description' value='<%= @member[:member_description] %>'>
+  </div>
+  <div class="form-group">
+    <label>On a scale from 1 to 5, where 1 is none/minimum and 5 is pro, how would you rate your gardening experience?</label>
+    <input type="number" class="form-control" name='experience' min="1" max="5" value='<%= @member[:member_gardening_experience] %>'>
+  </div>
+  <a href="/member/<%= @member[:member_id] %>" name="cancel" class="btn btn-default">Cancel</a>
+  <input type='hidden' name='_method' value='put'>
+  <button type="submit" name='submit' value='Save' class="btn btn-primary">Save</button>
+</form>
+
+</div>

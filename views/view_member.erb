@@ -1,0 +1,92 @@
+</br></br></br>
+
+<div class="container-fluid">
+
+  <!-- Section with images and intro info -->
+  <div class="row vcenter">
+
+    <!-- On left side, profile picture (for now a default outline img) -->
+    <div class="col-sm-1">
+      <img class="member-profile-pic" alt="Member picture" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEFk6pgsyFSdI9N2fty4o4XW-DTMTOhblacg8fTnFklRJYl1BqeA">
+    </div>
+
+    <!-- On right side, intro info -->
+    <div class="col-sm-11">
+
+      <!-- Member username -->
+      <h3> <%= @member[:member_username] %> </h3> </br>
+
+      <!-- Member name if available -->
+      Name:
+      <% if !@member[:member_first_name].empty? %>
+        <%= @member[:member_first_name]+" "+@member[:member_last_name] %>
+        <% else %> Not provided
+      <% end %> </br>
+
+      <!-- Member address if available -->
+      Address:
+      <% if !@member[:member_city].empty? %>
+        <%= @member[:member_zip_code]+" "+@member[:member_city] %>
+      <% else %> Not provided
+      <% end %> </br>
+
+      <!-- Member description if available -->
+      Some more details about <%= @member[:member_username] %>:
+      <% if !@member[:member_description].empty? %>
+        <%= @member[:member_description]%>
+      <% else %> Not provided
+      <% end %>  </br>
+
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+ <hr> </hr>
+
+    <!-- Info on gardening experience if available, on a "lemon rating" scale 1-5 -->
+    <h4> Gardening experience so far: </h4>
+
+    <% if !@member[:member_gardening_experience].nil? %>
+
+      <!-- A full lemon for each experience point up to 5 -->
+      <% (1..@member[:member_gardening_experience]).each do %>
+      <span class="fas fa-lemon"></span>
+      <% end %>
+
+      <!-- A lemon outline for the difference to 5 -->
+      <% (1..(5-@member[:member_gardening_experience])).each do %>
+        <span class="far fa-lemon"></span>
+        <% end %>
+    <% else %> Not provided
+    <% end %>
+    </br>
+
+    <hr> </hr>
+
+<!-- Gardens owned section -->
+<h4> Gardens posted: </h4>
+</div>
+<% if @gardens_owned %>
+<div class="container-fluid">
+  <div class="row">
+    <!-- For each garden owned, create div with garden picture, name, city -->
+    <!-- Show these in rows of 4 -->
+    <% @gardens_owned.each do |garden| %>
+      <div class="col-sm-3">
+        <img class="img-responsive img-rounded" alt="Garden picture" src="http://www.schweiztipps.ch/wp-content/uploads/2012/08/kleingarten.jpg">
+        <a class="text-names-links" href="/garden/<%= garden[:garden_id] %>"> <%= garden[:garden_name] %> </a></br>
+        <p class="text-subtitles"> <%= garden[:garden_city] %> </p>
+      </div>
+    <% end  %>
+    <% else %> None
+  <% end %>
+</div>
+
+</br></br>
+
+<!-- Button to launch member edit form -->
+<a class="btn btn-primary" href='/member/<%= @member[:member_id] %>/edit' role="button">Edit member details</a>
+
+</div>

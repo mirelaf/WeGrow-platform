@@ -1,0 +1,61 @@
+</br></br></br>
+
+<div class="container-fluid">
+<h1>Edit garden details</h1>
+
+<!-- Responsive form to edit garden -->
+<form action='/garden/<%= @garden[:garden_id] %>' method='POST'>
+  <input type='hidden' name'id'\> </input>
+  <h5> The fields marked with * are required. <h5></br>
+  <div class="form-group">
+    <label>Add a short name for your garden*</label>
+    <input type="text" class="form-control" name='name' value='<%= @garden[:garden_name] %>' required>
+    <small class="form-text text-muted">This is the "catch phrase" that will appear also on the map, for all members to see.</small>
+  </div>
+  <div class="form-group">
+    <label>And also a description</label>
+    <input type="text" class="form-control" name='description' value='<%= @garden[:garden_description] %>'>
+    <small class="form-text text-muted">Here you can include more info about the garden, its story, any recent developments or anything you'd like to share.</small>
+  </div>
+  <div class="form-group">
+    <label>Street name*</label>
+    <input type="text" class="form-control" name="street_name" value='<%= @garden[:garden_street_name] %>' required>
+  </div>
+  <div class="form-group">
+    <label>Street number*</label>
+    <input type="text" class="form-control" name='street_number' value='<%= @garden[:garden_street_number] %>' required>
+  </div>
+  <div class="form-group">
+    <label>Zip code*</label>
+    <input type="text" class="form-control" name='zip_code' value='<%= @garden[:garden_zip_code] %>' required>
+  </div>
+  <div class="form-group">
+    <label>City*</label>
+    <input type="text" class="form-control" name='city' value='<%= @garden[:garden_city] %>' required>
+  </div>
+  <div class="form-group">
+    <label>How big is the garden? (rough estimate in m2)</label>
+    <input type="text" class="form-control" name='size' value='<%= @garden[:garden_size] %>'>
+  </div>
+  <div class="form-group">
+    <label>What do you grow or plan to grow in the garden? (name fruit, veggies, spices, flowers etc.)</label>
+    <input type="text" class="form-control" name='crops' value='<%= @garden[:garden_crops] %>'>
+  </div>
+  <div class="form-group">
+    <label>Which tools and materials do you already have available for guests...</label>
+    <input type="text" class="form-control" name='facilities' value='<%= @garden[:garden_facilities] %>'>
+  </div>
+  <div class="form-group">
+    <label>... and what should the bring themselves?</label>
+    <input type="text" class="form-control" name='bring_your_own' value='<%= @garden[:garden_bring_your_own] %>'>
+  </div>
+  <div class="form-group">
+    <label>Minimum level of gardening experience preferred for helpers (1 to 5, where 1 is none/minimum and 5 is pro)</label>
+    <input type="number" class="form-control" name='experience' min="1" max="5" value='<%= @garden[:garden_experience_required] %>'>
+  </div>
+  <input type='hidden' name='_method' value='put'>
+  <a href="/garden/<%= @garden[:garden_id] %>" name="cancel" class="btn btn-default">Cancel</a>
+  <button type="submit" name="submit" value='Save' class="btn btn-primary">Save</button>
+</form>
+
+</div>

@@ -1,0 +1,271 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="/style/styles.css"/>
+</head>
+
+<!-- Intro section -->
+<section class="container-fluid" id="intro">
+  </br> </br> </br>
+  <div class="container-fluid">
+    <h3 class="text-left section-title-color"> A platform connecting gardens with interested people around
+    </h3> </br>
+    <div class="row">
+
+      <!-- On left side, for most of the width, intro text -->
+      <div class="col-sm-9">
+        </br>
+        <p class="text-intro">WeGrow connects interested people with gardens in need of an extra pair of hands, and fosters a friendly community interested in growing organic food and sustainability.
+        </br></br>
+        Need some help looking after your garden, or curious to try out gardening? </br>
+        </p>
+      </div>
+
+      <!-- On right side, buttons to add new garden, new member, access to admin page -->
+      <!-- These are available now to all as there is no login module -->
+      <div class="col-sm-3">
+        <div class="col-sm-12">
+          <a class="btn btn-primary btn-block" href='/garden/new' role="button">Add new garden</a>
+          <a class="btn btn-primary btn-block" href='/member/new' role="button">Add new member</a>
+          <a class="btn btn-info btn-block" href='/admin' role="button">More admin options</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Map listings section -->
+<section class="" id="find-on-map">
+  </br> </br> </br>
+  <p style="text-align:center;"><img style="max-height:50px" alt="WeGrow schema picture" src="/images/wegrow-schema.png"></p>
+  <h3 class="text-center section-title-color"> Find a garden nearby
+  </h3>
+  </br>
+  <div class="container-fluid">
+    <div class="row row-eq-height">
+
+      <!-- On left side, results area with grid with posted gardens in rows of two  -->
+      <div class="col-sm-8 garden-list-area pre-scrollable">
+        <ul>
+          <% @gardens.each do |garden| %>
+
+          <!-- Each garden box includes carousel image scroller (for the moment same for all), name, city, link to owner -->
+            <li class="container col-sm-6 garden-box">
+              <div id="carousel-<%=garden[:garden_id]%>" class="carousel slide" data-ride="carousel" data-interval="false">
+                <ol class="carousel-indicators">
+                  <li data-target="carousel-<%=garden[:garden_id]%>" data-slide-to="0" class="active"></li>
+                  <li data-target="carousel-<%=garden[:garden_id]%>" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <img src="http://www.schweiztipps.ch/wp-content/uploads/2012/08/kleingarten.jpg">
+                  </div>
+                  <div class="item">
+                    <img src="http://farm5.static.flickr.com/4115/4816055361_9021ebd379.jpg">
+                  </div>
+                </div>
+                <a class="left carousel-control" href="#carousel-<%=garden[:garden_id]%>" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-<%=garden[:garden_id]%>" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+              <a class="text-names-links" href='/garden/<%= garden[:garden_id] %>'> <%= garden[:garden_name] %> </a>
+              <p class="text-subtitles"> <%= garden[:garden_city] %> </p>
+              <p class="text-subtitles"> Posted by: <a href='/member/<%= garden[:garden_owner_id] %>'> <%= garden[:garden_owner_username] %></a></p>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- On right side, map centred on Zurich with markers for each map; rendered with Javascript -->
+      <div class="col-sm-4">
+        <div class="col-sm-12" id="map">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</br>
+</br>
+
+<!-- Benefits section -->
+<section class="container-fluid" id="benefits">
+  </br> </br> </br>
+  <div class="row">
+
+    <!-- On left side, benefits for garden owners -->
+    <div class="col-sm-5 text-center">
+      <img class="benefits-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/534159-200.png">
+      <div class="section-title-black"> For garden owners </div> </br>
+      <ul>
+        <li> Extra help in managing gardening workload </li>
+        <li> Get in touch with other gardeners, support each other  </li>
+        <li> Meeting new people through shared interest in sustainable food </li>
+        <li> Learning though community events and workshops </li>
+      </ul>
+    </div>
+
+    <!-- In the center, section title -->
+    <div class="col-sm-2 text-center section-title-white"> Benefits </div>
+
+    <!-- On right side, benefits for garden helpers -->
+    <div class="col-sm-5 text-center">
+      <img class="benefits-icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/6515-200.png">
+      <div class="section-title-black"> For garden helpers </div> </br>
+      <ul>
+        <li> Easy way to try out gardening even without previous experience </li>
+        <li> Learning how to grow your own food and deco plants </li>
+        <li> Access to a supporting community </li>
+        <li> Meeting new people, having fun as a family or with group of friends </li>
+        <li> Access to garden land, a much sought-after resource in the city </li>
+      </ul>
+    </div>
+  </div>
+  </br>
+</section>
+
+<!-- Contact section -->
+<section class="" id="contact">
+</br></br></br>
+
+  <!-- Section title and intro -->
+  <h3 class="text-center section-title-color"> Contact us </h3>
+  <div class="container-fluid">
+    <p> We are currently building the web app to allow you to contact other members directly. </br>
+      Want to be among the first to try it? Any other questions or thoughts? </br>
+      Please contact us via this form and we'll get back to you shortly. </p>
+    </br></br>
+
+    <!-- Responsive contact form -->
+    <form action="/contact/submit" method="post" role="form">
+      <div class="messages"></div>
+      <div class="controls">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="form_name">First name</label>
+              <input id="form_name" type="text" name="first_name" class="form-control" placeholder="First name">
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="form_lastname">Last name</label>
+              <input id="form_lastname" type="text" name="last_name" class="form-control" placeholder="Last name">
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="form_email">Email address*</label>
+              <input id="form_email" type="email" name="email" class="form-control" placeholder="Email address" required="required" data-error="Valid email is required.">
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="form_phone">Phone number</label>
+              <input id="form_phone" type="tel" name="phone" class="form-control" placeholder="Phone number">
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="form_message">Your message*</label>
+              <textarea id="form_message" name="message" class="form-control" placeholder="Your message for us" rows="4" required="required" data-error="Please,leave us a message."></textarea>
+              <div class="help-block with-errors"></div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <input type="submit" class="btn btn-primary btn-send" value="Send message">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-muted"><strong>*</strong> These fields are required.
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<script>
+
+var map;
+
+function initMap() {
+
+// Create map centred on Zurich
+map = new google.maps.Map(document.getElementById('map'), {
+  center: {lat: 47.3744694, lng: 8.5348776},
+  zoom: 12
+  });
+
+  var marker;
+  var info_markers = [];
+
+  // Save instance variable defined in the app, containing all locations that are not hidden, into JS variable
+  var locations = <%= @garden_locations %>;
+
+  // Create a marker for each garden in database
+  for (i = 0; i < locations.length; i++) {
+
+    var infowindow = new google.maps.InfoWindow();
+
+    marker = new google.maps.Marker({
+      position: {lat: locations[i][2], lng: locations[i][3]},
+      map: map
+    });
+
+    // Define content for each garden infowindow when marker is clicked on
+    // Save each into an array with infowindows info for each marker
+    var info_window_content = '<div class="garden-marker-box"><img class="garden-marker-picture" src="http://www.schweiztipps.ch/wp-content/uploads/2012/08/kleingarten.jpg" alt="Garden profile picture"><a class="garden-marker-text" href="/garden/'+locations[i][0]+'">'+locations[i][1]+'</a></br>'+locations[i][4]+'</div>'
+    info_markers.push(info_window_content);
+
+    // Add listener function rendering the relevant infowindow content to each marker on click
+    google.maps.event.addListener(marker, 'click', (function(marker, i) {
+      return function() {
+        infowindow.setContent(info_markers[i]);
+        infowindow.open(map, marker);
+        }
+    })(marker, i));
+
+    google.maps.event.addListener(infowindow, 'domready', function() {
+
+      // Reference to the default DIV which receives the contents of the infowindow using jQuery
+      var iwOuter = $('.gm-style-iw');
+
+      /* The DIV we want to change is above the .gm-style-iw DIV.
+      * Use jQuery and create a iwBackground variable,
+      * taking advantage of the existing reference to .gm-style-iw for the previous DIV with .prev().
+      */
+      var iwBackground = iwOuter.prev();
+
+      // Remove the background shadow DIV
+      iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+
+      // Remove the white background DIV
+      iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+
+      // Move the infowindow a bit more to the right and down, as the 2 operations above make it seem not centred
+      iwOuter.parent().parent().css({left: '2.5vw', top: '3vw'});
+
+      // Hide the arrow
+      iwBackground.children(':nth-child(3)').attr('style', function(i,s){ return s + 'display: none;'});
+  });
+}
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCt7NVhl5MGWmy3qvJvy37AqZ_ivEdiQU&callback=initMap" async defer></script>
+
+</body>

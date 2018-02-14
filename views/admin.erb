@@ -1,0 +1,126 @@
+</br></br></br></br>
+
+<!-- 2 buttons on top, for adding a new garden and a new member -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      <a class="btn btn-primary btn-block" href='/garden/new' role="button">Add new garden</a>
+      </br>
+      <a class="btn btn-primary btn-block" href='/member/new' role="button">Add new member</a>
+    </div>
+  </div>
+</div>
+
+</br>
+</br>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <!-- On half of the page, responsive grid with all gardens in rows of 2 -->
+    <div class="col-sm-6">
+      <h1 class="section-title-color">List of all gardens</h1></br>
+      <% @gardens.each do |garden| %>
+
+        <!-- Per garden, showing name, address, owner, visbility status (visible or hidden) -->
+        <div class="col-sm-5 container-box">
+          <b> <a class="text-names-links" href='/garden/<%= garden[:garden_id] %>'> <%= garden[:garden_name] %> </a> </b> </br>
+            Address: <%= garden[:garden_city] %> </br>
+            Posted by: <b> <a href='/member/<%= garden[:garden_owner_id] %>'> <%= garden[:garden_owner_username] %></a></b> </br>
+            Visibility:
+            <% if garden[:garden_visibility] %>
+
+              <!-- If visible, button to hide appears -->
+              <span class="text-when-visible">VISIBLE</span></br></br>
+              <form action='/admin/hide/garden' method='POST'>
+                <input type='hidden' name='garden_to_hide' value='<%= garden[:garden_id] %>'\>
+                <input type='hidden' name='_method' value='put'>
+                <button type='submit' class="btn btn-secondary btn-block" id="hide-garden" value='Hide garden'\>Hide garden</button>
+              </form>
+
+              <!-- If hidden, button to restore visibility appears -->
+              <% else %> <span class="text-when-hidden">HIDDEN</span></br></br>
+                <form action='/admin/show/garden' method='POST'>
+                  <input type='hidden' name='garden_to_show' value='<%= garden[:garden_id] %>'\>
+                  <input type='hidden' name='_method' value='put'>
+                  <button type='submit' class="btn btn-secondary btn-block" value='Show garden'\>Restore garden visibility on map</button>
+                </form>
+            <% end %>
+
+            <!-- Button to delete always present -->
+            <form action='/admin/delete/garden' method='POST'>
+              <input type='hidden' name='garden_to_delete' value='<%= garden[:garden_id] %>'\>
+              <input type='hidden' name='_method' value='put'>
+              <button type='submit' class="btn btn-danger btn-block" id="delete-garden" value='Delete garden'\>Delete garden</button>
+            </form>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- On the other half of the page, responsive grid with all members in rows of 2 -->
+    <div class="col-sm-6">
+      <h1 class="section-title-color">List of all members</h1></br>
+      <% @members.each do |member| %>
+
+        <!-- Per member, showing username, address, Number of gardens posted, visbility status (visible or hidden) -->
+        <div class="col-sm-5 container-box">
+          <b> <a class="text-names-links" href='/member/<%= member[:member_id] %>'> <%= member[:member_username] %> </a> </b> </br>
+            Address: <%= member[:member_zip_code]+" "+member[:member_city] %> </br>
+            Number of gardens posted: <%= DB[:gardens].where(:garden_owner_id => member[:member_id]).count %> </br>
+            Visibility:
+
+            <!-- If visible, button to hide appears below -->
+            <% if member[:member_visibility] %>
+              <span class="text-when-visible">VISIBLE</span></br></br>
+              <form action='/admin/hide/member' method='POST'>
+                <input type='hidden' name='member_to_hide' value='<%= member[:member_id] %>'\>
+                <input type='hidden' name='_method' value='put'>
+                <button type='submit' class="btn btn-secondary btn-block" id="hide-member" value='Hide member'\>Hide member</button>
+              </form>
+
+              <!-- If hidden, button to restore visibility appears -->
+              <% else %> <span class="text-when-hidden">HIDDEN</span></br></br>
+                <form action='/admin/show/member' method='POST'>
+                  <input type='hidden' name='member_to_show' value='<%= member[:member_id] %>'\>
+                  <input type='hidden' name='_method' value='put'>
+                  <button type='submit' class="btn btn-secondary btn-block" id="show-member" value='Show member'\>Restore member visibility</button>
+                </form>
+              <% end %>
+
+              <!-- Button to delete always present -->
+              <form action='/admin/delete/member' method='POST'>
+                <input type='hidden' name='member_to_delete' value='<%= member[:member_id] %>'\>
+                <input type='hidden' name='_method' value='put'>
+                <button type='submit' class="btn btn-danger btn-block" id="delete-member" value='Delete member'\>Delete member</button>
+              </form>
+          </div>
+          <% end %>
+      </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+
+  // Confirmation alert before deleting or hiding members
+  $("#delete-member, #hide-member").click(function(){
+    if (!confirm("Are you sure? This will also affect the gardens posted by the member")){
+      return false;
+    }
+  });
+
+  // Confirmation alert before deleting or hiding gardens
+  $("#delete-garden, #hide-garden").click(function(){
+    if (!confirm("Are you sure?")){
+      return false;
+    }
+  });
+
+  // Confirmation alert before restoring member visibility
+  $("#show-member").click(function(){
+    if (!confirm("This will also restore the visibility of gardens posted by this member")){
+      return false;
+    }
+  });
+});
+</script>
